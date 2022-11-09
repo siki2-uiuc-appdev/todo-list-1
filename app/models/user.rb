@@ -14,4 +14,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many(:tasks, { :class_name => "Task", :foreign_key => "owner_id", :dependent => :destroy })
+  has_many(:next_up_tasks, -> { where status: "next up" } , { :class_name => "Task", :foreign_key => "owner_id"})
+  has_many(:in_progress_tasks, -> { where status: "in progress" } , { :class_name => "Task", :foreign_key => "owner_id"})
+  has_many(:done_tasks, -> { where status: "done" } , { :class_name => "Task", :foreign_key => "owner_id"})
 end

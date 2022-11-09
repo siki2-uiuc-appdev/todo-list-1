@@ -21,13 +21,13 @@
         <input id="body_box" name="query_body">
       </div>
 
-      <div>
+      <%# <div>
         <input type="hidden" id="status_box" name="query_status">
       </div>
 
       <div>
         <input type="hidden" id="owner_id_box" name="query_owner_id">
-      </div>
+      </div> %>
 
       <button>
         Add to Next Up
@@ -38,15 +38,55 @@
 
 <div class="next_up">
   <h2>Next Up</h2>
-  
+  <ul>
+    <% @current_user.next_up_tasks.each do |task| %>
+      <li>
+        <div class=""><%= task.body %></div>
+        <small>
+          Added <%= time_ago_in_words(task.created_at) %> ago
+          <a href="/delete_task/<%= task.id %>">Delete</a>
+        </small>
+
+        <form action="/modify_task/<%= task.id %>" method="post">
+          <input type="hidden" name="query_status" value="in progress">
+          <button>Move to In Progress</button>
+        </form>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="in_progress">
   <h2>In Progress</h2>
-  
+   <ul>
+    <% @current_user.in_progress_tasks.each do |task| %>
+      <li>
+        <div class=""><%= task.body %></div>
+        <small>
+          Started <%= time_ago_in_words(task.updated_at) %> ago
+          <a href="/delete_task/<%= task.id %>">Delete</a>
+        </small>
+
+        <form action="/modify_task/<%= task.id %>" method="post">
+          <input type="hidden" name="query_status" value="done">
+          <button>Move to Done</button>
+        </form>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="done">
   <h2>Done</h2>
-  
+  <ul>
+    <% @current_user.done_tasks.each do |task| %>
+      <li>
+        <div class=""><%= task.body %></div>
+        <small>
+          Completed at <%= time_ago_in_words(task.updated_at) %>
+          <a href="/delete_task/<%= task.id %>">Delete</a>
+        </small>
+      </li>
+    <% end %>
+  </ul>
 </div>
