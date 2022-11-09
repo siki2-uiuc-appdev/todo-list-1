@@ -41,7 +41,7 @@
   <ul>
     <% @current_user.next_up_tasks.each do |task| %>
       <li>
-        <div class=""><%= task.body %></div>
+        <div><%= task.body %></div>
         <small>
           Added <%= time_ago_in_words(task.created_at) %> ago
           <a href="/delete_task/<%= task.id %>">Delete</a>
@@ -61,7 +61,7 @@
    <ul>
     <% @current_user.in_progress_tasks.each do |task| %>
       <li>
-        <div class=""><%= task.body %></div>
+        <div><%= task.body %></div>
         <small>
           Started <%= time_ago_in_words(task.updated_at) %> ago
           <a href="/delete_task/<%= task.id %>">Delete</a>
@@ -83,7 +83,7 @@
       <li>
         <div class=""><%= task.body %></div>
         <small>
-          Completed at <%= time_ago_in_words(task.updated_at) %>
+          Completed at <%= task.updated_at.in_time_zone('America/Chicago').strftime("%l:%M%P on %d-%b-%Y") %>
           <a href="/delete_task/<%= task.id %>">Delete</a>
         </small>
       </li>
