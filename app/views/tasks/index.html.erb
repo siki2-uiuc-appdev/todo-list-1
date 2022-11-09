@@ -1,118 +1,39 @@
 <div>
   <div>
     <h1>
-      List of all tasks
+      Your todo list
     </h1>
   </div>
 </div>
 
-<hr>
-
 <div>
   <div>
     <h2>
-      Add a new task
+      Add a new todo
     </h2>
 
     <form action="/insert_task" method="post">
       <div>
         <label for="body_box">
-          Body
+          Describe the task:
         </label>
 
-        <textarea id="body_box" name="query_body" rows="3"></textarea>
+        <input id="body_box" name="query_body">
       </div>
 
       <div>
-        <label for="status_box">
-          Status
-        </label>
-
-        <input type="text" id="status_box" name="query_status">
+        <input type="hidden" id="status_box" name="query_status">
       </div>
 
       <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
+        <input type="hidden" id="owner_id_box" name="query_owner_id">
       </div>
 
       <button>
-        Create task
+        Add to Next Up
       </button>
     </form>
   </div>
 </div>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
 
-        <th>
-          Body
-        </th>
-
-        <th>
-          Status
-        </th>
-
-        <th>
-          Owner
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_tasks.each do |a_task| %>
-      <tr>
-        <td>
-          <%= a_task.id %>
-        </td>
-
-        <td>
-          <%= a_task.body %>
-        </td>
-
-        <td>
-          <%= a_task.status %>
-        </td>
-
-        <td>
-          <%= a_task.owner_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_task.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_task.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/tasks/<%= a_task.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
