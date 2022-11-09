@@ -7,16 +7,6 @@ class TasksController < ApplicationController
     render({ :template => "tasks/index.html.erb" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_tasks = Task.where({ :id => the_id })
-
-    @the_task = matching_tasks.at(0)
-
-    render({ :template => "tasks/show.html.erb" })
-  end
-
   def create
     the_task = Task.new
     the_task.body = params.fetch("query_body")

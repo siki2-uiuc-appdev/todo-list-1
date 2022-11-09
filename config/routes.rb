@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   # READ
   get("/tasks", { :controller => "tasks", :action => "index" })
   
-  get("/tasks/:path_id", { :controller => "tasks", :action => "show" })
   
   # UPDATE
   
